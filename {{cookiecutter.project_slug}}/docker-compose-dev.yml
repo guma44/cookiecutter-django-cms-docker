@@ -12,6 +12,7 @@ services:
     env_file: .env.dev
     volumes:
       - ./web:/usr/src/app
+      - web_public_dev:/public:rw
     depends_on:
       - db
     command: /run_server.sh local
