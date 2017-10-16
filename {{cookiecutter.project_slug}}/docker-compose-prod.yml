@@ -12,7 +12,7 @@ services:
       - db:db
     env_file: .env
     volumes:
-      - web_{{cookiecutter.project_slug}}_public_prod:/public:rw
+      - web_public_prod:/public:rw
     depends_on:
       - db
     command: /run_server.sh gunicorn
@@ -25,7 +25,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - web_{{cookiecutter.project_slug}}_public_prod:/public:rw
+      - web_public_prod:/public:rw
     links:
       - web:web
     depends_on:
@@ -37,17 +37,17 @@ services:
     build: ./db/
     env_file: .env
     volumes:
-      - db_{{cookiecutter.project_slug}}_data_prod:/var/lib/postgresql/data:rw
-      - db_{{cookiecutter.project_slug}}_backup_prod:/backups
-      - web_{{cookiecutter.project_slug}}_public_prod:/public:rw
+      - db_data_prod:/var/lib/postgresql/data:rw
+      - db_backup_prod:/backups
+      - web_public_prod:/public:rw
     # Expose ports without publishing them
     expose:
       - "5432"
 
 volumes:
-  db_{{cookiecutter.project_slug}}_data_prod:
+  db_data_prod:
     driver: local
-  db_{{cookiecutter.project_slug}}_backup_prod:
+  db_backup_prod:
     driver: local
-  web_{{cookiecutter.project_slug}}_public_prod:
+  web_public_prod:
     driver: local

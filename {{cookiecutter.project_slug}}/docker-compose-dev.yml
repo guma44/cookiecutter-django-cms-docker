@@ -21,17 +21,17 @@ services:
     build: ./db/
     env_file: .env.dev
     volumes:
-      - db_{{cookiecutter.project_slug}}_data_dev:/var/lib/postgresql/data:rw
-      - db_{{cookiecutter.project_slug}}_backup_dev:/backups
-      - web_{{cookiecutter.project_slug}}_public_dev:/public:rw
+      - db_data_dev:/var/lib/postgresql/data:rw
+      - db_backup_dev:/backups
+      - web_public_dev:/public:rw
     # Expose ports without publishing them
     expose:
       - "5432"
 
 volumes:
-  db_{{cookiecutter.project_slug}}_data_dev:
+  db_data_dev:
     driver: local
-  db_{{cookiecutter.project_slug}}_backup_dev:
+  db_backup_dev:
     driver: local
-  web_{{cookiecutter.project_slug}}_public_dev:
+  web_public_dev:
     driver: local
