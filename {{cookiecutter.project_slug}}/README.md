@@ -36,6 +36,9 @@ For the production run a gunicorn server is used to serve Django
 and the port 8000 is exposed to other services. The Nginx server
 is used as a proxy for Django and to serve static and media files.
 
+### IMPORTANT
+
+Do not forget to set properly environment. Especially ALLOWED_HOSTS.
 
 ## Backups
 
@@ -70,5 +73,3 @@ In order to copy files from the host to choosen machine's container do:
 sudo docker cp <sql_backup> container_id:/backups/
 sudo docker cp <media_backup> container_id:/backups/
 ```
-
-
