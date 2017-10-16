@@ -28,7 +28,7 @@ elif [ "$1" == "gunicorn" ]; then
 	echo "Running Gunicorn"
 	python manage.py migrate
 	python /usr/src/app/manage.py collectstatic --noinput
-	/usr/local/bin/gunicorn project_name.wsgi:application -w 5 -b :8000
+	/usr/local/bin/gunicorn {{cookiecutter.project_slug}}.wsgi:application -w 5 -b :8000
 else
-    echo "Ussage: run_server.sh [local|gunicorn]"
+    echo "Usage: run_server.sh [local|gunicorn]"
 fi
