@@ -1,0 +1,39 @@
+{% raw %}{% load cms_tags staticfiles sekizai_tags menu_tags %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endraw %}{{cookiecutter.project_name}}{% raw %}{% endblock title %}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        {% render_block "css" %}
+        <link rel="stylesheet" href="{% static "{% endraw %}{{cookiecutter.project_slug}}{% raw %}/css/style.css" %}">
+    </head>
+    <body>
+        {% cms_toolbar %}
+        <div class="container">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">{% endraw %}{{cookiecutter.project_name}}{% raw %}</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        {% show_menu 0 1 100 100 "menu.html" %}
+                    </ul>
+                </div>
+            </div>
+            {% block content %}{% endblock content %}
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        {% render_block "js" %}
+    </body>
+</html>
+{% endraw %}
