@@ -40,6 +40,12 @@ is used as a proxy for Django and to serve static and media files.
 
 Do not forget to set properly environment. Especially ALLOWED_HOSTS.
 
+There is a know bug in Django CMS causing a failure to load / address.
+If you experience 404 accessing the website (eg. http://localhost)
+turn on DEBUG=True for an initialization or go directly to /admin
+and create first Page manually in the DJANGO CMS -> Pages section.
+
+
 ## Backups
 
 In order to prepare backup run following command:
@@ -72,4 +78,17 @@ In order to copy files from the host to choosen machine's container do:
 ```
 sudo docker cp <sql_backup> container_id:/backups/
 sudo docker cp <media_backup> container_id:/backups/
+```
+
+## Logs
+
+The logs for nginx service can be found in `/var/log/nginx/error_{{cookiecutter.project_slug}}.log`
+and `/var/log/nginx/access_{{cookiecutter.project_slug}}.log`.
+
+The logs for web servece are in `/var/log/{{cookiecutter.project_slug}}/access.log`,
+`/var/log/{{cookiecutter.project_slug}}/error.log` and `/var/log/{{cookiecutter.project_slug}}/django.log`.
+
+One can see them by executing:
+```
+docker-compose -f docker-compose-dev.yml exec <service> tail [-F] <path to log>
 ```
