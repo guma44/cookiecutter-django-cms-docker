@@ -216,3 +216,26 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+        'logfile': {
+            'level': 'DEBUG',
+            'filename': "/var/log/{{cookiecutter.project_slug}}/django.log",
+            'class': 'logging.handlers.RotatingFileHandler',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 5,
+        },
+    },
+    'root': {
+        'level': 'INFO',
+        'handlers': ['console', 'logfile']
+    },
+}

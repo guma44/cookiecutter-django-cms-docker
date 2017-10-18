@@ -9,8 +9,8 @@ RUN groupadd -r django && useradd -r -g django django
 RUN mkdir -p /usr/src/app
 RUN mkdir -p /public/media
 RUN mkdir -p /public/static
+RUN mkdir -p /var/log/{{cookiecutter.project_slug}}
 WORKDIR /usr/src/app
-RUN mkdir logs
 
 # Run python requirements installation
 COPY requirements.txt /usr/src/app/
